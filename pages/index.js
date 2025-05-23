@@ -8,50 +8,57 @@ export default function Home() {
             Welcome to <span className="text-blue-500">Revknew</span>
           </h1>
           <p className="text-xl text-gray-400 mb-8">
-            The future-proof platform to run your local service empire. Automate, grow, and win your market.
+            The future-proof platform to run your local service empire. Automate, grow, and win your market with zero tech bloat.
           </p>
-          <a href="#" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg transition transform hover:scale-105">
-            Get Early Access
+          <a
+            href="#"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg transition transform hover:scale-105"
+          >
+            Request Early Access
           </a>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="px-6 py-20 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12 text-white drop-shadow-glow">Platform Power</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-white drop-shadow-glow">
+          Everything You Need to Scale
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            ["Unified CRM", "Capture and manage every lead, job, and client conversation in real time."],
-            ["AI Follow-Ups", "Never lose a client again. Behavior-based automations close the loop for you."],
-            ["Messaging Command Hub", "Text, email, and manage conversations from one secure dashboard."],
-            ["Dynamic Scheduling", "Visual calendar with drag-and-drop assignments, time blocks, and team sync."],
-            ["Instant Invoicing", "Create and send invoices in seconds. Get paid without the paperwork."],
-            ["Live Performance Dashboard", "Revenue, pipeline, reviews — all tracked in one visual hub."]
-          ].map(([title, desc], idx) => (
-            <Feature key={idx} title={title} description={desc} />
-          ))}
+          <Feature title="Unified CRM" description="Capture and manage every lead, job, and client interaction in real time — simple, fast, and mobile-first." />
+          <Feature title="AI Follow-Ups" description="Trigger personalized texts or emails based on behavior. Never lose a lead or review again." />
+          <Feature title="Multi-Channel Inbox" description="Text, email, and manage client communication from one secure hub. Searchable, synced, and owned by you." />
+          <Feature title="Drag & Drop Scheduling" description="Dispatch jobs, block off hours, and manage your team's calendar without chaos." />
+          <Feature title="Fast Invoicing" description="Send branded estimates and invoices in seconds. Get paid faster with auto-reminders." />
+          <Feature title="Live Performance Dashboard" description="Know your revenue, close rate, review volume, and pipeline — all in one visual dashboard." />
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="bg-gradient-to-tr from-blue-700 to-purple-800 text-white text-center px-6 py-24">
-        <h2 className="text-4xl font-extrabold mb-4 drop-shadow-glow">Rewire Your Ops</h2>
+        <h2 className="text-4xl font-extrabold mb-4 drop-shadow-glow">
+          Ready to Leave the Old Stack Behind?
+        </h2>
         <p className="text-lg mb-6 max-w-2xl mx-auto text-gray-100">
-          All-in-one simplicity. No-code automation. A real competitive edge.
+          Revknew is the ops layer built for real operators. No spreadsheets. No Zapier duct tape. Just scale.
         </p>
-        <a href="#" className="bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold text-lg hover:bg-gray-200 transition shadow-lg transform hover:scale-105">
-          Join the Beta →
+        <a
+          href="#"
+          className="bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold text-lg hover:bg-gray-200 transition shadow-lg transform hover:scale-105"
+        >
+          Join the Private Beta →
         </a>
       </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-center py-6 text-sm text-gray-500">
-        © {new Date().getFullYear()} Revknew. Crafted for the next generation.
+        © {new Date().getFullYear()} Revknew. Built for the bold.
       </footer>
     </main>
   );
 }
 
+// Feature Card Component
 function Feature({ title, description }) {
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition duration-300 backdrop-blur-sm bg-opacity-60">
