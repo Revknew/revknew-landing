@@ -1,58 +1,74 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { Disclosure } from '@headlessui/react';
+import { HiMenu, HiX } from 'react-icons/hi';
+
+const sections = ['features', 'testimonials', 'pricing'];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      const scrollY = window.scrollY + 100;
+      for (let id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+          setActive(id);
+          break;
+        }
+      }
     };
-
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all ${
-        scrolled ? 'bg-dark/70 backdrop-blur-md shadow-md' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        {/* Left Spacer */}
-        <div className="w-1/3" />
+    <Disclosure as="nav" className="fixed top-0 left-0 w-full z-50 bg-dark/70 backdrop-blur-md shadow-md border-b border-white/10">
+      {({ open }) => (
+        <>
+          <div className="max-w-7xl mx-auto px-4 py-3 flex justify-end items-center">
+            {/* Desktop Nav */}
+            <div className="hidden md:flex gap-6 text-sm font-medium">
+              {sections.map((id) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className={`relative pb-1 ${
+                    active === id
+                      ? 'text-accent border-b-2 border-accent'
+                      : 'text-gray-400 hover:text-white border-b-2 border-transparent hover:border-white'
+                  }`}
+                >
+                  <span className="capitalize">{id}</span>
+                </a>
+              ))}
+            </div>
 
-        {/* Center Nav Links */}
-        <nav className="hidden md:flex justify-center w-1/3 space-x-8 text-accent font-medium text-sm">
-          <a href="#features" className="hover:text-white transition">Features</a>
-          <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
-          <a href="#pricing" className="hover:text-white transition">Pricing</a>
-        </nav>
+            {/* Mobile Menu Button */}
+            <Disclosure.Button className="md:hidden text-white ml-4">
+              {open ? <HiX size={26} /> : <HiMenu size={26} />}
+            </Disclosure.Button>
+          </div>
 
-        {/* Right (Removed Buttons) */}
-        <div className="w-1/3" />
-      </div>
-
-      {isOpen && (
-        <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: 'auto' }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-dark px-6 py-4 space-y-4 text-accent"
-        >
-          <a href="#features" className="block hover:text-white transition">Features</a>
-          <a href="#testimonials" className="block hover:text-white transition">Testimonials</a>
-          <a href="#pricing" className="block hover:text-white transition">Pricing</a>
-          {/* Removed Login & Get Started */}
-        </motion.div>
+          {/* Mobile Panel */}
+          <Disclosure.Panel className="md:hidden px-4 pb-4 pt-2 space-y-2 bg-dark text-white text-sm">
+            {sections.map((id) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className={`block px-4 py-2 rounded-md ${
+                  active === id ? 'bg-accent text-black' : 'hover:bg-white/10'
+                }`}
+              >
+                {id.charAt(0).toUpperCase() + id.slice(1)}
+              </a>
+            ))}
+          </Disclosure.Panel>
+        </>
       )}
-    </motion.header>
+    </Disclosure>
   );
 }

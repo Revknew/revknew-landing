@@ -1,4 +1,3 @@
-// Features.jsx
 'use client';
 import { motion } from 'framer-motion';
 
@@ -11,52 +10,44 @@ const cardVariants = {
   }),
 };
 
-export default function Features() {
-  const features = [
-    {
-      title: 'Smart CRM',
-      description: 'Manage leads, clients, and communication in one centralized platform.',
-    },
-    {
-      title: 'Automated Reviews',
-      description: 'Collect and boost reviews with automated SMS/email flows.',
-    },
-    {
-      title: 'Scheduling',
-      description: 'Let customers book directly from your site, synced with your calendar.',
-    },
-    {
-      title: 'AI Follow-Ups',
-      description: 'Automatically follow up with leads and no-shows with personalized messages.',
-    },
-    {
-      title: 'Analytics',
-      description: 'Know what’s working: open rates, reviews, conversions — at a glance.',
-    },
-    {
-      title: 'One-Click Setup',
-      description: 'Get started fast with templates prebuilt for local businesses.',
-    },
-  ];
+const features = [
+  {
+    title: 'Lead & Client CRM',
+    description: 'Track every lead, client, and conversation in one simple dashboard — no more sticky notes or spreadsheets.',
+  },
+  {
+    title: 'Smart Review Requests',
+    description: 'Send automated SMS or email review invites after appointments to boost your online reputation.',
+  },
+  {
+    title: 'Online Booking',
+    description: 'Let clients schedule services directly through your site — fully synced with your calendar.',
+  },
+  {
+    title: 'Follow-Up Automations',
+    description: 'Missed calls? No-shows? RevKnew sends polite reminders or follow-ups automatically.',
+  },
+  {
+    title: 'Performance Insights',
+    description: 'See what’s working — from new leads to review counts to response times — all in one place.',
+  },
+  {
+    title: 'Easy Setup',
+    description: 'Launch fast with prebuilt settings tuned for local businesses. No tech team needed.',
+  },
+];
 
+export default function Features() {
   return (
-    <motion.section
-      id="features"
-      className="py-20 px-4 bg-dark text-white"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
+    <section id="features" className="py-20 px-4 bg-dark text-white">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="max-w-6xl mx-auto text-center"
       >
         <h2 className="text-4xl font-bold mb-8 text-accent drop-shadow-glow">
-          Key Features
+          What You Can Do with RevKnew
         </h2>
       </motion.div>
 
@@ -66,20 +57,15 @@ export default function Features() {
             key={feature.title}
             custom={index}
             initial="hidden"
-            whileInView="visible"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 12px #7eff00, 0 0 24px #7eff00',
-            }}
-            viewport={{ once: true }}
+            animate="visible"
             variants={cardVariants}
-            className="glass-card text-center transition-shadow duration-300"
+            className="glass-card text-center p-6 transition duration-300 ease-in-out hover:shadow-[0_0_12px_#7eff00] hover:scale-[1.02]"
           >
             <h3 className="text-xl font-semibold text-accent mb-2">{feature.title}</h3>
             <p className="text-gray-300">{feature.description}</p>
           </motion.div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

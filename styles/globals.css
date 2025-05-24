@@ -79,3 +79,19 @@ p {
 .animate-pulse-slow {
   animation: pulse-slow 6s ease-in-out infinite;
 }
+
+/* === Navbar Active Link Glow === */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+    box-shadow: 0 0 6px #7eff00, 0 0 12px #7eff00;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px #7eff00, 0 0 20px #7eff00;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
