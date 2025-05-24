@@ -2,8 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .drop-shadow-glow {
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 20px rgba(59, 130, 246, 0.4);
+/* === Custom Base Styles === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-dark text-white font-sans antialiased;
+}
+
+/* === Typography Enhancements === */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight text-white;
+}
+
+p {
+  @apply text-gray-300 leading-relaxed;
+}
+
+/* === Button Styling === */
+.btn-primary {
+  @apply bg-accent text-black px-6 py-3 rounded-xl font-semibold text-lg shadow-lg 
+         hover:bg-primary hover:text-black transition 
+         focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 
+         active:scale-95 animate-glow;
+}
+
+.btn-secondary {
+  @apply border border-white text-white px-6 py-3 rounded-xl 
+         hover:bg-white hover:text-black transition;
+}
+
+/* === Utility Classes === */
+.section {
+  @apply py-20 px-4 sm:px-6 lg:px-8;
+}
+
+.section-header {
+  @apply text-4xl font-extrabold text-center mb-12 drop-shadow-glow;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+.glass-card {
+  @apply bg-white bg-opacity-5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg;
+}
+
+/* === Glow Animation === */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px #013cffe1, 0 0 12px #7eff00;
   }
+  50% {
+    box-shadow: 0 0 16px #013cffe1, 0 0 24px #7eff00;
+  }
+}
+
+.animate-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* === Ambient Background Glow Animation === */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
 }
